@@ -19,7 +19,7 @@ const Auth: React.FC<IAuthProps> = ({ session, reloadSession }) => {
   };
 
   return (
-    <Center height="100vh" border="1px solid red">
+    <Center height="100vh">
       <Stack align="center" spacing={8}>
         {session ? (
           <>

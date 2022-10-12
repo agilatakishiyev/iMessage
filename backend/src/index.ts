@@ -5,11 +5,22 @@ import {
 } from "apollo-server-core";
 import express from "express";
 import http from "http";
+import typeDefs from "./graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
 
-async function main(typeDefs, resolvers) {
+import { makeExecutableSchema } from "@graphql-tools/schema";
+
+async function main(typeDefs: any, resolvers: any) {
   const app = express();
   const httpServer = http.createServer(app);
+
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+  });
+
   const server = new ApolloServer({
+    schema,
     typeDefs,
     resolvers,
     csrfPrevention: true,
@@ -27,6 +38,6 @@ async function main(typeDefs, resolvers) {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 
-main().catch((err) => {
+main(typeDefs, resolvers).catch((err) => {
   console.log(err);
 });
