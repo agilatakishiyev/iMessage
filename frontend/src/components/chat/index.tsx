@@ -1,6 +1,10 @@
 import { Button } from "@chakra-ui/react";
 
-const Chat = () => {
+interface IChatProps {
+  session: any;
+}
+
+const Chat: React.FC<IChatProps> = () => {
   return <Button>Sign out</Button>;
 };
 
